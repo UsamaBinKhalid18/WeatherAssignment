@@ -54,7 +54,7 @@ interface ReadingDao {
         from readings_table
         where (year=:year and month=:month)
     """)
-    suspend fun avgMaxTempForMonth(year:Int,month:Int):Int
+    suspend fun avgMaxTempForMonth(year:Int,month:Int):Float
 
     @Query("""
         select avg(minTemp) 
