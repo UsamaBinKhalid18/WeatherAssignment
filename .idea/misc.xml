@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v23/ic_humidity.xml" value="0.1115" />
+        <entry key="app/src/main/res/drawable/custom_spinner_layout.xml" value="0.287" />
+        <entry key="app/src/main/res/drawable/ic_high_temp.xml" value="0.2595" />
+        <entry key="app/src/main/res/drawable/ic_humidity.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2595" />
+        <entry key="app/src/main/res/drawable/ic_low_temp.xml" value="0.2595" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.15771812080536912" />
+        <entry key="app/src/main/res/layout/custom_spinner_layout.xml" value="0.4083333333333333" />
+        <entry key="app/src/main/res/layout/fragment_list.xml" value="0.23515659357538282" />
+        <entry key="app/src/main/res/layout/fragment_report.xml" value="0.2705993652343751" />
+        <entry key="app/src/main/res/layout/item.xml" value="0.21614583333333334" />
+        <entry key="app/src/main/res/layout/item2.xml" value="0.21614583333333334" />
+        <entry key="app/src/main/res/layout/spinner_item.xml" value="0.23148148148148148" />
+        <entry key="app/src/main/res/layout/spinner_layout.xml" value="0.21614583333333334" />
+        <entry key="app/src/main/res/layout/year_item.xml" value="0.36018518518518516" />
+        <entry key="app/src/main/res/layout/year_month_Item.xml" value="0.21614583333333334" />
+        <entry key="app/src/main/res/layout/year_month_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/year_report_item.xml" value="0.1435523114355231" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.224" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

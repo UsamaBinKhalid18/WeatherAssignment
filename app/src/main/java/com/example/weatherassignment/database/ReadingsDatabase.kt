@@ -53,14 +53,14 @@ abstract class ReadingsDataBase : RoomDatabase() {
                         CoroutineScope(Dispatchers.IO).launch {
                             for (year in 2004..2016) {
                                 for (month in listOfMonths) {
-                                    addToDatabase(year,month,dao)
+                                    addToDatabase(year, month, dao)
 
                                 }
                             }
                         }
                     }
 
-                    suspend fun addToDatabase(year:Int,month:String,dao:ReadingDao){
+                    suspend fun addToDatabase(year: Int, month: String, dao: ReadingDao) {
                         try {
                             val stringlist = context.assets.open(
                                 context.resources.getString(

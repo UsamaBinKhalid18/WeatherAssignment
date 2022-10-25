@@ -17,6 +17,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -35,6 +39,7 @@ android {
 dependencies {
 
     kapt 'androidx.room:room-compiler:2.4.3'
+    implementation("androidx.fragment:fragment-ktx:1.5.3")
     implementation 'androidx.room:room-runtime:2.4.3'
     implementation 'androidx.room:room-ktx:2.4.3'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'

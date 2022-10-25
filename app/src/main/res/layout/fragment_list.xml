@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ListFragment">
+
+    <androidx.appcompat.widget.AppCompatToggleButton
+        android:id="@+id/tgl_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:background="@color/purple_500"
+        android:checked="true"
+        android:drawableEnd="@android:drawable/ic_popup_sync"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/white"
+        android:textOff="Monthly Report"
+        android:textOn="Yearly Report" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="60dp"
+        android:background="#eee"
+        android:paddingBottom="30dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bt_add_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_margin="30dp"
+        android:backgroundTint="@color/purple_500"
+        android:foreground="@android:drawable/ic_input_add"
+        android:foregroundTint="@color/white"
+        android:importantForAccessibility="no" />
+
+    <Button
+        android:id="@+id/bt_generate_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="10dp"
+        android:text="Generate" />
+
+    <ImageButton
+        android:id="@+id/bt_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        android:layout_margin="15dp"
+        android:background="@color/purple_500"
+        android:foreground="@android:drawable/ic_menu_delete"
+        android:src="@android:drawable/ic_menu_delete" />
+
+</FrameLayout>

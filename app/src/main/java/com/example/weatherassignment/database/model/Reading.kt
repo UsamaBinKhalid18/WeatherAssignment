@@ -2,7 +2,7 @@ package com.example.weatherassignment.database.model
 
 import androidx.room.Entity
 
-@Entity(tableName = "readings_table", primaryKeys = ["year","month","day"])
+@Entity(tableName = "readings_table", primaryKeys = ["year", "month", "day"])
 data class Reading(
     val year: Int,
     val month: Int,
