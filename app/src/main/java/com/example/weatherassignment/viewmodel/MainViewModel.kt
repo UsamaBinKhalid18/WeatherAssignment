@@ -5,11 +5,14 @@ import androidx.lifecycle.*
 import com.example.weatherassignment.database.Repository
 import com.example.weatherassignment.database.model.ResultDateAndValue
 import com.example.weatherassignment.database.model.YearAndMonth
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class MainViewModel(private val repository: Repository) : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
     private val _yearList = mutableListOf(2004)
     private val _monthList = mutableListOf(YearAndMonth(2004, 7))

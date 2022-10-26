@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.weatherassignment.R
@@ -14,11 +15,13 @@ import com.example.weatherassignment.adapter.YearListAdapterRV
 import com.example.weatherassignment.databinding.FragmentListBinding
 import com.example.weatherassignment.util.Provider
 import com.example.weatherassignment.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ListFragment : Fragment() {
     private lateinit var binding: FragmentListBinding
-    private lateinit var viewModel: MainViewModel
+
+    private val viewModel: MainViewModel by activityViewModels()
     private lateinit var yearListAdapterRV: YearListAdapterRV
     private lateinit var monthListAdapterRV: MonthListAdapterRV
 
@@ -29,7 +32,7 @@ class ListFragment : Fragment() {
         binding = FragmentListBinding.inflate(inflater)
         val yearAdapter = Provider.provideYearArrayAdapter(requireContext())
         val monthAdapter = Provider.provideMonthArrayAdapter(requireContext())
-        viewModel = Provider.provideViewModel(this, requireContext())
+        //viewModel = Provider.provideViewModel(this, requireContext())
 
         yearListAdapterRV = YearListAdapterRV(yearAdapter, viewModel::updateYearList)
         yearListAdapterRV.submitList(viewModel.yearList)

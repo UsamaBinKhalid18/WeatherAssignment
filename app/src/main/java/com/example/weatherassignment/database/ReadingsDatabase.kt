@@ -1,6 +1,6 @@
 package com.example.weatherassignment.database
 
-import android.content.Context
+import android.app.Application
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -36,7 +36,7 @@ abstract class ReadingsDataBase : RoomDatabase() {
         @Volatile
         private var INSTANCE: ReadingsDataBase? = null
 
-        fun getInstance(context: Context): ReadingsDataBase {
+        fun getInstance(context: Application): ReadingsDataBase {
             val temp = INSTANCE
             if (temp != null) {
                 return temp

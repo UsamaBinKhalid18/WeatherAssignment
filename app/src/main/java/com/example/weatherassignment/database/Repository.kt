@@ -1,6 +1,6 @@
 package com.example.weatherassignment.database
 
-class Repository(dataBase: ReadingsDataBase) {
+class Repository (dataBase: ReadingsDataBase) {
     private val readingsDao = dataBase.getReadingDao()
 
     suspend fun maxTempForYear(year: Int) = readingsDao.maxTempForYear(year)
@@ -17,4 +17,5 @@ class Repository(dataBase: ReadingsDataBase) {
 
     suspend fun avgMeanHumForMonth(year: Int, month: Int) =
         readingsDao.avgMeanHumForMonth(year, month)
+
 }
