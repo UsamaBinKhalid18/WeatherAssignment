@@ -1,8 +1,5 @@
-package com.example.weatherassignment.database.model
+package com.example.weatherassignment.data.model
 
-import androidx.room.Entity
-
-@Entity(tableName = "readings_table", primaryKeys = ["year", "month", "day"])
 data class Reading(
     val year: Int,
     val month: Int,
@@ -17,7 +14,8 @@ data class Reading(
     companion object {
         fun listFromString(stringList: List<String>): List<Reading> {
             val columns = stringList[0].split(",")
-            val dateIndex = if(columns.indexOf("PKT")==-1) columns.indexOf("PKST") else columns.indexOf("PKT")
+            val dateIndex =
+                if (columns.indexOf("PKT") == -1) columns.indexOf("PKST") else columns.indexOf("PKT")
 
             val maxTempIndex = columns.indexOf("Max TemperatureC")
             val meanTempIndex = columns.indexOf("Mean TemperatureC")

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherassignment.R
-import com.example.weatherassignment.database.model.YearMonth
+import com.example.weatherassignment.data.model.YearMonth
 
 class MonthListAdapterRV(
     private val yearAdapter: ArrayAdapter<Int>,

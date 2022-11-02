@@ -2,9 +2,9 @@ package com.example.weatherassignment.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.weatherassignment.database.Repository
-import com.example.weatherassignment.database.model.ResultDateValue
-import com.example.weatherassignment.database.model.YearMonth
+import com.example.weatherassignment.data.Repository
+import com.example.weatherassignment.data.model.ResultDateValue
+import com.example.weatherassignment.data.model.YearMonth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

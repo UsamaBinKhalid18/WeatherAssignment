@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherassignment.R
-import com.example.weatherassignment.database.model.ResultDateValue
+import com.example.weatherassignment.data.model.ResultDateValue
 
 class YearReportAdapter(
     private val list: List<List<ResultDateValue>>,

@@ -1,4 +1,4 @@
-package com.example.weatherassignment.database.model
+package com.example.weatherassignment.data.model
 
 data class YearMonth(val year: Int, val month: Int) {
     override operator fun equals(other: Any?): Boolean {

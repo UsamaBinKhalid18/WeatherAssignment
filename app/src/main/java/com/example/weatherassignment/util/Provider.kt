@@ -3,15 +3,15 @@ package com.example.weatherassignment.util
 import android.content.Context
 import android.widget.ArrayAdapter
 import androidx.lifecycle.ViewModelProvider
-import com.example.weatherassignment.database.ReadingsDataBase
-import com.example.weatherassignment.database.Repository
+import com.example.weatherassignment.data.MyDataSource
+import com.example.weatherassignment.data.Repository
 import com.example.weatherassignment.viewmodel.MainViewModel
 
 object Provider {
     private lateinit var viewModel: MainViewModel
-    private fun provideDataBase(context: Context) = ReadingsDataBase.getInstance(context)
+    private fun provideDataSource(context: Context) = MyDataSource(context.applicationContext)
 
-    private fun provideRepository(context: Context) = Repository(provideDataBase(context))
+    private fun provideRepository(context: Context) = Repository(provideDataSource(context))
 
     fun provideYearArrayAdapter(context: Context) = ArrayAdapter(
         context,
