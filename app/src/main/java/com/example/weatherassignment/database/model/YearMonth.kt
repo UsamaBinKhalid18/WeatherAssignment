@@ -1,8 +1,8 @@
 package com.example.weatherassignment.database.model
 
-data class YearAndMonth(val year: Int, val month: Int) {
+data class YearMonth(val year: Int, val month: Int) {
     override operator fun equals(other: Any?): Boolean {
-        if (other is YearAndMonth) {
+        if (other is YearMonth) {
             return other.month == month && other.year == year
         }
         return false

@@ -1,21 +1,6 @@
 <resources>
     <string name="app_name">Weather Assignment</string>
-    <string name="file_name">Murree_weather_%d_%s.txt</string>
-    <integer-array name="years">
-        <item>2004</item>
-        <item>2005</item>
-        <item>2006</item>
-        <item>2007</item>
-        <item>2008</item>
-        <item>2009</item>
-        <item>2010</item>
-        <item>2011</item>
-        <item>2012</item>
-        <item>2013</item>
-        <item>2014</item>
-        <item>2015</item>
-        <item>2016</item>
-    </integer-array>
+    <string name="file_name">WeatherDetails/Murree_weather_%d_%s.txt</string>
     <string-array name="months">
         <item>Jan</item>
         <item>Feb</item>
@@ -36,4 +21,5 @@
     <string name="avg_high_temp">Average Highest Temperature : %.1fC</string>
     <string name="avg_low_temp">Average Lowest Temperature : %.1fC</string>
     <string name="avg_mean_hum">Average Mean Humidity : %.1f%%</string>
+    <string name="data_not_available">Data Not Available</string>
 </resources>

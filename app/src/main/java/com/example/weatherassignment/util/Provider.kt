@@ -9,14 +9,14 @@ import com.example.weatherassignment.viewmodel.MainViewModel
 
 object Provider {
     private lateinit var viewModel: MainViewModel
-    fun provideDataBase(context: Context) = ReadingsDataBase.getInstance(context)
+    private fun provideDataBase(context: Context) = ReadingsDataBase.getInstance(context)
 
-    fun provideRepository(context: Context) = Repository(provideDataBase(context))
+    private fun provideRepository(context: Context) = Repository(provideDataBase(context))
 
     fun provideYearArrayAdapter(context: Context) = ArrayAdapter(
         context,
         com.example.weatherassignment.R.layout.spinner_item,
-        context.resources.getIntArray(com.example.weatherassignment.R.array.years).asList()
+        provideValidYears(context).toList()
     )
 
     fun provideMonthArrayAdapter(context: Context) = ArrayAdapter.createFromResource(
@@ -36,4 +36,16 @@ object Provider {
                 )[MainViewModel::class.java]
             viewModel
         }
+
+    fun provideValidYears(context: Context):IntRange{
+        var min=Int.MAX_VALUE
+        var max=0
+        val filenames=context.assets.list("WeatherDetails/")
+        for (name in filenames!!){
+            val year=name.split("_")[2].toInt()
+            min= kotlin.math.min(min,year)
+            max= kotlin.math.max(max,year)
+        }
+        return min..max
+    }
 }

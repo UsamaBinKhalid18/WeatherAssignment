@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.weatherassignment.database.model.Reading
-import com.example.weatherassignment.database.model.ResultDateAndValue
+import com.example.weatherassignment.database.model.ResultDateValue
 
 @Dao
 interface ReadingDao {
@@ -13,47 +13,38 @@ interface ReadingDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addReading(reading: Reading)
 
-    @Query(
-        """
-        select year,month,day,maxTemp as value 
-        from readings_table
-        where(year==:year and maxTemp=(
-            select max(maxTemp)
-            from readings_table
-            where year=:year
-        ))
-        limit 1
-    """
-    )
-    suspend fun maxTempForYear(year: Int): ResultDateAndValue
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun addReadings(reading: List<Reading>)
 
     @Query(
         """
-        select year,month,day,minTemp as value
+        select year,month,day,max(maxTemp) as value 
         from readings_table
-        where(year==:year and minTemp=(
-            select min(minTemp)
-            from readings_table
-            where year=:year
-        ))
+        where year=:year
         limit 1
     """
     )
-    suspend fun minTempForYear(year: Int): ResultDateAndValue
+    suspend fun maxTempForYear(year: Int): ResultDateValue
 
     @Query(
         """
-        select year,month,day,maxHum as value
+        select year,month,day,min(minTemp) as value
         from readings_table
-        where(year==:year and maxHum=(
-            select max(maxHum)
-            from readings_table
-            where year=:year
-        ))
+        where year=:year
         limit 1
     """
     )
-    suspend fun maxHumForYear(year: Int): ResultDateAndValue
+    suspend fun minTempForYear(year: Int): ResultDateValue
+
+    @Query(
+        """
+        select year,month,day,max(maxHum) as value
+        from readings_table
+        where year=:year
+        limit 1
+    """
+    )
+    suspend fun maxHumForYear(year: Int): ResultDateValue
 
     @Query(
         """
@@ -62,7 +53,7 @@ interface ReadingDao {
         where (year=:year and month=:month)
     """
     )
-    suspend fun avgMaxTempForMonth(year: Int, month: Int): Float
+    suspend fun avgMaxTempForMonth(year: Int, month: Int): Float?
 
     @Query(
         """
@@ -71,7 +62,7 @@ interface ReadingDao {
         where (year=:year and month=:month)
     """
     )
-    suspend fun avgMinTempForMonth(year: Int, month: Int): Float
+    suspend fun avgMinTempForMonth(year: Int, month: Int): Float?
 
     @Query(
         """
@@ -80,6 +71,6 @@ interface ReadingDao {
         where (year=:year and month=:month)
     """
     )
-    suspend fun avgMeanHumForMonth(year: Int, month: Int): Float
+    suspend fun avgMeanHumForMonth(year: Int, month: Int): Float?
 
 }

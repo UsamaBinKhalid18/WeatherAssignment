@@ -8,10 +8,10 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherassignment.R
-import com.example.weatherassignment.database.model.ResultDateAndValue
+import com.example.weatherassignment.database.model.ResultDateValue
 
 class YearReportAdapter(
-    private val list: List<List<ResultDateAndValue>>,
+    private val list: List<List<ResultDateValue>>,
     private val monthArrayAdapter: ArrayAdapter<CharSequence>
 ) : RecyclerView.Adapter<YearReportAdapter.ViewHolder>() {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

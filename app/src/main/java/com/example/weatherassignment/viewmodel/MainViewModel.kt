@@ -3,8 +3,8 @@ package com.example.weatherassignment.viewmodel
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.weatherassignment.database.Repository
-import com.example.weatherassignment.database.model.ResultDateAndValue
-import com.example.weatherassignment.database.model.YearAndMonth
+import com.example.weatherassignment.database.model.ResultDateValue
+import com.example.weatherassignment.database.model.YearMonth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -12,18 +12,18 @@ import kotlinx.coroutines.withContext
 class MainViewModel(private val repository: Repository) : ViewModel() {
 
     private val _yearList = mutableListOf(2004)
-    private val _monthList = mutableListOf(YearAndMonth(2004, 7))
-    private val _yearResult = mutableListOf<List<ResultDateAndValue>>()
-    private val _monthResult = mutableListOf<List<Float>>()
+    private val _monthList = mutableListOf(YearMonth(2004, 7))
+    private val _yearResult = mutableListOf<List<ResultDateValue>>()
+    private val _monthResult = mutableListOf<List<Float?>>()
     private val _reportGenerated = MutableLiveData(0)
 
     val yearList: List<Int>
         get() = _yearList
-    val monthList: List<YearAndMonth>
+    val monthList: List<YearMonth>
         get() = _monthList
-    val yearResult: List<List<ResultDateAndValue>>
+    val yearResult: List<List<ResultDateValue>>
         get() = _yearResult
-    val monthResult: List<List<Float>>
+    val monthResult: List<List<Float?>>
         get() = _monthResult
     val reportGenerated: LiveData<Int>
         get() = _reportGenerated
@@ -38,9 +38,9 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
 
     fun updateMonthList(year: Int, month: Int, position: Int? = null) {
         if (position != null) {
-            _monthList[position] = YearAndMonth(year, month)
+            _monthList[position] = YearMonth(year, month)
         } else {
-            _monthList.add(YearAndMonth(year, month))
+            _monthList.add(YearMonth(year, month))
         }
     }
 
@@ -63,20 +63,15 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
 
         viewModelScope.launch(Dispatchers.IO) {
             for (yearMonth in monthList.distinct()) {
-                try {
                     val avgMaxTemp = repository.avgMaxTempForMonth(yearMonth.year, yearMonth.month)
                     val avgMinTemp = repository.avgMinTempForMonth(yearMonth.year, yearMonth.month)
                     val avgMeanHum = repository.avgMeanHumForMonth(yearMonth.year, yearMonth.month)
                     _monthResult.add(listOf(avgMaxTemp, avgMinTemp, avgMeanHum))
-                } catch (e: Exception) {
-                    _monthList.remove(yearMonth)
-                    e.printStackTrace()
-                }
             }
             withContext(Dispatchers.Main) { _reportGenerated.value = 2 }
-
         }
     }
+
 
     fun deleteYearList() {
         _yearList.clear()

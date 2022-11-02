@@ -17,4 +17,5 @@ class Repository(dataBase: ReadingsDataBase) {
 
     suspend fun avgMeanHumForMonth(year: Int, month: Int) =
         readingsDao.avgMeanHumForMonth(year, month)
+
 }

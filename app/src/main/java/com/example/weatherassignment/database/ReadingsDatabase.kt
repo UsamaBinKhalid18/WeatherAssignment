@@ -1,13 +1,14 @@
 package com.example.weatherassignment.database
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.weatherassignment.R
 import com.example.weatherassignment.database.dao.ReadingDao
 import com.example.weatherassignment.database.model.Reading
+import com.example.weatherassignment.util.Provider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -35,8 +36,33 @@ abstract class ReadingsDataBase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: ReadingsDataBase? = null
+        fun updateDataBase(context:Context){
+            val dao=getInstance(context).getReadingDao()
+            Log.d("TAG", "onCreate: ")
+            CoroutineScope(Dispatchers.IO).launch {
+                val validYears = Provider.provideValidYears(context)
+                Log.d("TAG", "onCreate: $validYears")
+                for (year in validYears) {
+                    for (month in listOfMonths) {
+                        Log.d("TAG", "onCreate: $year $month")
+                        try {
+                            val stringList = context.assets.open(
+                                context.resources.getString(
+                                    R.string.file_name,
+                                    year, month
+                                )
+                            ).reader().readLines()
+                            dao.addReadings(Reading.listFromString(stringList))
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    }
+                }
+            }
+        }
 
         fun getInstance(context: Context): ReadingsDataBase {
+            Log.d("TAG", "getInstance: ")
             val temp = INSTANCE
             if (temp != null) {
                 return temp
@@ -46,39 +72,7 @@ abstract class ReadingsDataBase : RoomDatabase() {
                     context.applicationContext,
                     ReadingsDataBase::class.java,
                     "readingDB"
-                ).addCallback(object : RoomDatabase.Callback() {
-                    override fun onCreate(db: SupportSQLiteDatabase) {
-                        super.onCreate(db)
-                        val dao = getInstance(context).getReadingDao()
-                        CoroutineScope(Dispatchers.IO).launch {
-                            for (year in 2004..2016) {
-                                for (month in listOfMonths) {
-                                    addToDatabase(year, month, dao)
-
-                                }
-                            }
-                        }
-                    }
-
-                    suspend fun addToDatabase(year: Int, month: String, dao: ReadingDao) {
-                        try {
-                            val stringlist = context.assets.open(
-                                context.resources.getString(
-                                    R.string.file_name,
-                                    year, month
-                                )
-                            ).reader().readLines().let {
-                                it.subList(1, it.size)
-                            }
-
-                            for (i in stringlist) {
-                                dao.addReading(Reading.fromString(i))
-                            }
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
-                    }
-                }).build()
+                ).build()
 
                 INSTANCE = tempInstance
                 return tempInstance

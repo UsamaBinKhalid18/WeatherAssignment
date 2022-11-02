@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherassignment.R
-import com.example.weatherassignment.database.model.YearAndMonth
+import com.example.weatherassignment.database.model.YearMonth
 
 class MonthListAdapterRV(
     private val yearAdapter: ArrayAdapter<Int>,
     private val monthAdapter: ArrayAdapter<CharSequence>,
     private val updateYearMonth: (year: Int, month: Int, position: Int) -> Unit
-) : ListAdapter<YearAndMonth, MonthListAdapterRV.ViewHolder>(ItemCallback) {
+) : ListAdapter<YearMonth, MonthListAdapterRV.ViewHolder>(ItemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(
@@ -53,12 +53,12 @@ class MonthListAdapterRV(
 
     companion object {
 
-        private object ItemCallback : DiffUtil.ItemCallback<YearAndMonth>() {
+        private object ItemCallback : DiffUtil.ItemCallback<YearMonth>() {
 
-            override fun areItemsTheSame(oldItem: YearAndMonth, newItem: YearAndMonth) =
+            override fun areItemsTheSame(oldItem: YearMonth, newItem: YearMonth) =
                 oldItem === newItem
 
-            override fun areContentsTheSame(oldItem: YearAndMonth, newItem: YearAndMonth) =
+            override fun areContentsTheSame(oldItem: YearMonth, newItem: YearMonth) =
                 (oldItem.month == newItem.month && oldItem.year == newItem.year)
         }
     }
